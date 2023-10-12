@@ -29,16 +29,8 @@
         <el-scrollbar class="scrollbar">
           <div class="left-container">
             <ul>
-              <li
-                @drag="drag(item)"
-                @dragend="dragend(item)"
-                @mousedown="mousedown"
-                class="left-item components-item"
-                v-for="item in layoutItem"
-                :key="item.i"
-                :draggable="true"
-                unselectable="on"
-              >
+              <li @drag="drag(item)" @dragend="dragend(item)" @mousedown="mousedown" class="left-item components-item"
+                v-for="item in gardLeft" :key="item.i" :draggable="true" unselectable="on">
                 {{ item.name }}
               </li>
             </ul>
@@ -47,26 +39,12 @@
       </div>
       <div class="center">
         <div id="content" class="center-container">
-          <grid-layout
-            ref="gridlayout"
-            :layout.sync="layout"
-            :col-num="layoutConfig.colNum"
-            :row-height="layoutConfig.rowHeight"
-            :is-draggable="isDraggable"
-            :is-resizable="isDraggable"
-            :is-mirrored="false"
-            :vertical-compact="true"
-            :margin="layoutConfig.margin"
-            :use-css-transforms="true"
-          >
+          <grid-layout ref="gridlayout" :layout.sync="layout" :col-num="layoutConfig.colNum"
+            :row-height="layoutConfig.rowHeight" :is-draggable="isDraggable" :is-resizable="isDraggable"
+            :is-mirrored="false" :vertical-compact="true" :margin="layoutConfig.margin" :use-css-transforms="true">
             <grid-item v-for="item in layout" :x="item.x" :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i">
-              <component
-                :is="item.type"
-                :isDraggable.sync="isDraggable"
-                v-bind="item.attrs"
-                :modelType="modelType"
-                :setting="item.setting"
-              ></component>
+              <component :is="item.type" :isDraggable.sync="isDraggable" v-bind="item.attrs" :modelType="modelType"
+                :setting="item.setting"></component>
               <i v-if="item.setting" class="el-icon-setting settting" @click="setItem(item)"></i>
               <i class="el-icon-close remove" @click="removeItem(item.i)"></i>
             </grid-item>
@@ -75,26 +53,15 @@
         </div>
       </div>
     </div>
-    <!-- <component
-      v-if="activeItem.type"
-      ref="layoutForm"
-      :is="`${activeItem.type}Form`"
-      :isDraggable="isDraggable"
-      :itemAttrs="activeItem.attrs"
-      :systemCode="form.systemCode"
-      :modelType="modelType"
-    ></component> -->
   </div>
 </template>
 
+
+
 <script>
 import { cloneDeep } from 'lodash'
-import layoutItem from './js/layoutItem'
 import layoutConfig from './js/config'
-import { GridLayout, GridItem } from "vue-grid-layout"
-
-import itemConpoents from '../index/components/index.js'
-
+import { GridLayout, GridItem } from 'vue-grid-layout'
 import { portal } from '@/project/apis/getway.js'
 import CreateUpdate from './components/CreateUpdate.vue'
 import layoutView from './components/LayoutView.vue'
@@ -103,16 +70,21 @@ let DragPos = { x: null, y: null, w: 1, h: 1, i: null }
 export default {
   components: {
     GridLayout,
-        GridItem,
-    ...itemConpoents,
+    GridItem,
     CreateUpdate,
     layoutView
+
   },
-  data() {
+  props:{
+    gardLeft:{
+      type:Array,
+      default:()=>[]
+    }
+  },
+  data () {
     return {
       isView: false,
       active: 1,
-      layoutItem,
       isDraggable: true,
       itemKey: '',
       layout: [],
@@ -130,20 +102,12 @@ export default {
         jsonObject: [],
         content: ''
       },
-      // activeItem: {},
       modelType: []
     }
   },
   methods: {
-    // setItem(row) {
-    //   console.log(row)
-    //   this.activeItem = row
-    //   this.$nextTick(() => {
-    //     this.$refs.layoutForm.init()
-    //   })
-    // },
     // 获取信息
-    getDetail(facadeCode) {
+    getDetail (facadeCode) {
       this.$post(
         portal.getFaceByCode,
         {
@@ -156,7 +120,7 @@ export default {
       )
     },
     // 提交设置
-    onSubmit() {
+    onSubmit () {
       this.form.jsonObject = this.layout
       this.$post(
         this.form.id ? portal.updateFace : portal.addFacadeAssembly,
@@ -171,17 +135,17 @@ export default {
       )
     },
     // 下一步
-    next() {
+    next () {
       this.$refs.form.validate(() => {
         this.active = 2
       })
     },
     // 取消
-    back() {
+    back () {
       this.$router.go(-1)
     },
     // 清楚已经选中
-    removeItem(val) {
+    removeItem (val) {
       const index = this.layout.map(item => item.i).indexOf(val)
       // 如果是文件下载模板，清除已选中
       if (
@@ -194,10 +158,10 @@ export default {
       this.layout.splice(index, 1)
     },
     // 从左侧 移动出来组件
-    mousedown() {
+    mousedown () {
       this.itemKey = this.$dayjs().valueOf()
     },
-    calcXY(top, left, el, item) {
+    calcXY (top, left, el, item) {
       const colWidth = el.calcColWidth()
       let x = Math.round((left - el.margin[0]) / (colWidth + el.margin[0]))
       let y = Math.round((top - el.margin[1]) / (el.rowHeight + el.margin[1]))
@@ -207,7 +171,7 @@ export default {
 
       return { x, y }
     },
-    drag(item) {
+    drag (item) {
       let parentRect = document.getElementById('content').getBoundingClientRect()
 
       let mouseInGrid = false
@@ -234,7 +198,7 @@ export default {
         try {
           // 半隐样式
           this.$refs.gridlayout.$children[this.layout.length].$refs.item.style.display = 'none'
-        } catch {}
+        } catch { }
         let el = this.$refs.gridlayout.$children[index]
         el.dragging = { top: mouseXY.y - parentRect.top, left: mouseXY.x - parentRect.left }
         let new_pos = this.calcXY(mouseXY.y - parentRect.top, mouseXY.x - parentRect.left, el, item)
@@ -266,11 +230,11 @@ export default {
         try {
           // 重新显示
           this.$refs.gridlayout.$children[this.layout.length].$refs.item.style.display = 'block'
-        } catch {}
+        } catch { }
       }
     }
   },
-  mounted() {
+  mounted () {
     document.addEventListener(
       'dragover',
       function (e) {
@@ -284,7 +248,7 @@ export default {
       this.getDetail(id)
     }
   },
-  beforeDestroy() {}
+  beforeDestroy () { }
 }
 </script>
 
@@ -294,6 +258,7 @@ export default {
     box-shadow: 0 2px 12px 0 rgb(0 0 0 / 2%);
   }
 }
+
 .add {
   padding: 100px 40px 40px;
   margin: auto;
@@ -302,10 +267,12 @@ export default {
   background: #fff;
   box-sizing: border-box;
 }
+
 .form-title {
   font-size: 24px;
   font-weight: 600;
 }
+
 .header {
   background-color: #fff;
   height: 60px;
@@ -317,6 +284,7 @@ export default {
   overflow: hidden;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   line-height: 60px;
+
   &-left {
     float: left;
     margin-left: 40px;
@@ -324,41 +292,50 @@ export default {
     font-weight: 600;
     color: #00afff;
   }
+
   &-right {
     float: right;
     margin-right: 20px;
     text-align: right;
   }
+
   &-center {
     width: 300px;
     margin: auto;
     overflow: hidden;
+
     .el-steps--simple {
       padding: 0;
       background: transparent;
     }
+
     :deep(.el-step__icon) {
       vertical-align: middle;
     }
   }
 }
+
 :deep(.el-input) {
   width: 60%;
 }
+
 :deep(.el-button) {
   margin-left: 20px;
 }
+
 .center {
   height: 100vh;
   padding: 60px 0px 0 250px;
   box-sizing: border-box;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
+
   &-container {
     margin: 20px;
     height: 100%;
     overflow: auto;
     position: relative;
+
     &::after {
       content: '';
       width: 100%;
@@ -368,9 +345,11 @@ export default {
       top: 800px;
     }
   }
+
   :deep(.el-form-item) {
     cursor: move;
     position: relative;
+
     &:hover .copy,
     &:hover .delete {
       display: block;
@@ -379,6 +358,7 @@ export default {
 
   .active {
     position: relative;
+
     &:before {
       content: '';
       width: calc(100% - 10px);
@@ -389,13 +369,16 @@ export default {
       left: 0;
       cursor: move;
     }
+
     :deep(.el-form-item) {
+
       .copy,
       .delete {
         display: block;
       }
     }
   }
+
   .drawing-board {
     min-height: calc(100vh - 110px);
     position: relative;
@@ -403,6 +386,7 @@ export default {
     border-radius: 10px;
     padding-top: 10px;
     padding-left: 10px;
+
     .components-item {
       font-size: 0;
       width: 100%;
@@ -414,6 +398,7 @@ export default {
       float: left;
     }
   }
+
   .empty-info {
     position: absolute;
     top: 46%;
@@ -425,9 +410,11 @@ export default {
     letter-spacing: 4px;
   }
 }
+
 :deep(.el-form-item__label) {
   cursor: move;
 }
+
 .left {
   width: 250px;
   padding: 20px 0 0 0;
@@ -435,13 +422,16 @@ export default {
   height: 100vh;
   float: left;
   background-color: #fff;
+
   &-container {
     padding: 60px 10px 10px 10px;
   }
+
   &-title {
     font-weight: 600;
     line-height: 30px;
   }
+
   &-item {
     width: 100px;
     line-height: 30px;
@@ -450,16 +440,19 @@ export default {
     margin: 10px 5px;
     text-align: center;
     display: inline-block;
+
     &:hover {
       cursor: pointer;
       border: 1px dashed #787be8;
     }
   }
 }
+
 .condition {
   font-size: 12px;
   color: #666;
 }
+
 .settting,
 .remove {
   position: absolute;
@@ -467,10 +460,12 @@ export default {
   top: 2px;
   cursor: pointer;
   color: #c0c4cc;
+
   &:hover {
     color: #409eff;
   }
 }
+
 .settting {
   right: 24px;
 }

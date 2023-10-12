@@ -9,12 +9,12 @@ import 'blackbox-ui/es/style.css'
 import router from './router'
 import store from './store'
 import './utils/http.js'
-
+import Weather from '../project/components/weather/Index.vue'
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(BlackboxUI, router, store)
-
+Vue.component('Weather', Weather)
 const app = new Vue({
   router,
   store,

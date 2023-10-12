@@ -21,7 +21,13 @@ export const demo = {
     {
       path: '/bbx/getway',
       meta: { title: '门户管理' },
-      component: () => import('@/project/views/portal/list/Index.vue')
+      component: () => import('@/project/views/demo/shPortalList/index.vue')
+    },
+    // 预览
+    {
+      path: '/bbx/index/:id',
+      meta: { title: '自定门户首页', notAuth: true },
+      component: () => import('@/project/views/portal/index/Index.vue')
     }
   ]
 }
@@ -29,13 +35,8 @@ export const demo = {
 // 不需要权限的
 export const demoBlank = [
   {
-    path: '/project/portal/add',
+    path: '/bbx/portal/add',
     meta: { title: '自定门户', notAuth: true },
-    component: () => import('@/project/views/portal/add/Index.vue')
-  },
-  {
-    path: '/project/portal/index',
-    meta: { title: '自定门户', notAuth: true },
-    component: () => import('@/project/views/portal/index/Index.vue')
+    component: () => import('@/project/views/demo/shPortalAdd/index.vue')
   }
 ]

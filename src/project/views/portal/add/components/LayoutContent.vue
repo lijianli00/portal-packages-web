@@ -30,7 +30,6 @@
 
 <script>
 import VueGridLayout from 'vue-grid-layout'
-import layoutCom from '../../index/components/index'
 import layoutConfig from '../js/config'
 export default {
   props: {
@@ -39,7 +38,6 @@ export default {
   components: {
     GridLayout: VueGridLayout.GridLayout,
     GridItem: VueGridLayout.GridItem,
-    ...layoutCom
   },
   data() {
     return {

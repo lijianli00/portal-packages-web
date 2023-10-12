@@ -37,6 +37,11 @@
   </div>
 </template>
 <script>
+export default {
+  name: 'ShPortalList'
+}
+</script>
+<script>
 import { getway } from '@/project/apis/getway.js'
 import layoutView from '../add/components/LayoutView.vue'
 const dropdownList = [
@@ -62,13 +67,13 @@ export default {
   },
   methods: {
     onCreate() {
-      this.$router.push({ path: '/project/portal/add' })
+      this.$router.push({ path: '/bbx/portal/add' })
     },
     onUpdate(row) {
-      this.$router.push({ path: '/project/portal/add', query: { id: row.facadeCode } })
+      this.$router.push({ path: '/bbx/portal/add', query: { id: row.facadeCode } })
     },
     onViews(row) {
-      this.layout = row.jsonObject
+      this.layout = JSON.parse(row.content)
       this.isView = true
     },
     onDelete(row) {
