@@ -19,15 +19,15 @@ const loading = ref(false)
 const id =  router.currentRoute.params.id
 
 const protalCode = [
-  `bbx-index-${id}-first`, 
-  `bbx-index-${id}-second`,
-  `bbx-index-${id}-third`,
-  `bbx-index-${id}-fourth`,
-  `bbx-index-${id}-fifth`,
-  `bbx-index-${id}-seventh`,
-  `bbx-index-${id}-eighth`,
-  `bbx-index-${id}-ninth`,
-  `bbx-index-${id}-tenth`,
+  `first`, 
+  `second`,
+  `third`,
+  `fourth`,
+  `fifth`,
+  `seventh`,
+  `eighth`,
+  `ninth`,
+  `tenth`,
 ]
 const getPortal =async (id)=>{
   const res =await $post(portal.getFaceByCode,{facadeCode:id})
@@ -35,13 +35,15 @@ const getPortal =async (id)=>{
   console.log(res.data.jsonObject)
 }
 
-protalCode.forEach(item => {
-  if ($isCode(item)) {
-    getPortal(item)
+const key = protalCode.find(item => {
+  return $isCode(`bbx-index-${id}-${item}`)
+})
+
+if (key) {
+    getPortal(`bbx-index-${id}-${key}`)
   } else {
-    getPortal(`${id}`) 
+    getPortal(`bbx-index-${id}`) 
   }
-});
 
 </script>
 
