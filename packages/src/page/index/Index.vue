@@ -29,25 +29,26 @@ const loading = ref(false)
 
 // 获取实例
 const { proxy } = getCurrentInstance()
+console.log(123, proxy.$route)
 
-const id = proxy.$route.params.id
+const { path } = proxy.$route
+const prefix = path.slice(1).replaceAll('/', '-')
 
-const portalCode = [`first`, `second`, `third`, `fourth`, `fifth`, `seventh`, `eighth`, `ninth`, `tenth`]
+const portalCode = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
 const getPortal = async id => {
   const res = await $post(bbxAdminFacade.getFaceByCode, { facadeCode: id })
   layout.value = res.data.jsonObject
-  console.log(res.data.jsonObject)
 }
 
 const key = portalCode.find(item => {
-  return $isCode(`bbx-index-${id}-${item}`)
+  return $isCode(`${prefix}-${item}`)
 })
 
 onMounted(() => {
   if (key) {
-    getPortal(`bbx-index-${id}-${key}`)
+    getPortal(`${prefix}-${key}`)
   } else {
-    getPortal(`bbx-index-${id}`)
+    getPortal(prefix)
   }
 })
 </script>

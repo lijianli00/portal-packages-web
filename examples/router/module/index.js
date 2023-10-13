@@ -1,5 +1,4 @@
 import { RouterBlackbox } from 'blackbox-ui'
-import { portalAdd, portalList, portalIndex } from './portal'
 import Layout from '../../layout/index.vue'
 
 export default [

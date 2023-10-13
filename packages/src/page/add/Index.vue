@@ -339,10 +339,6 @@ export default {
   }
 }
 
-:deep(.el-input) {
-  width: 60%;
-}
-
 :deep(.el-button) {
   margin-left: 20px;
 }
@@ -359,15 +355,6 @@ export default {
     height: 100%;
     overflow: auto;
     position: relative;
-
-    &::after {
-      content: '';
-      width: 100%;
-      height: 1px;
-      background: #eee;
-      position: absolute;
-      top: 800px;
-    }
   }
 
   :deep(.el-form-item) {

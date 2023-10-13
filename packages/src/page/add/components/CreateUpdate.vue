@@ -2,12 +2,12 @@
 <template>
   <div>
     <sh-form ref="form" :model="form" label-width="120px" class-name="xy-form">
-      <sh-form-item label="所属应用" prop="appId" rules="required">
+      <sh-form-item label="所属应用" prop="appId" rules="required" :span="16">
         <el-select v-model="form.appId" placeholder="请选择">
           <el-option v-for="item in getData" :key="item.id" :label="item.appName" :value="item.appId"> </el-option>
         </el-select>
       </sh-form-item>
-      <sh-form-item label="门户名称" prop="facadeName" rules="required">
+      <sh-form-item label="门户名称" prop="facadeName" rules="required" :span="16">
         <el-input v-model="form.facadeName" placeholder="请输入门户名称"></el-input>
       </sh-form-item>
       <sh-form-item
@@ -17,6 +17,7 @@
           'required',
           { pattern: /^[a-zA-Z][a-zA-Z-]*[a-zA-Z]$/, message: '以字母开头结尾且只包含字母或者中划线', trigger: 'blur' }
         ]"
+        :span="16"
       >
         <el-input v-model="form.facadeCode" placeholder="请输入门户编码"></el-input>
       </sh-form-item>

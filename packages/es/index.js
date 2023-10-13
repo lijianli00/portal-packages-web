@@ -1,6 +1,7 @@
 import VueGridLayout, { GridLayout, GridItem } from "vue-grid-layout";
 import { cloneDeep } from "lodash";
 import { ref, getCurrentInstance, onMounted } from "vue";
+var __uno = "";
 const bbxAdminFacade = {
   add: "/bbxAdminFacade/addFacadeAssembly",
   getFaceByCode: "/bbxAdminFacade/getFaceByCode",
@@ -262,7 +263,7 @@ var __component__$7 = /* @__PURE__ */ normalizeComponent(
   null
 );
 var Index$3 = __component__$7.exports;
-var CreateUpdate_vue_vue_type_style_index_0_scoped_f59e4e49_lang = "";
+var CreateUpdate_vue_vue_type_style_index_0_scoped_2b64e19c_lang = "";
 const _sfc_main$6 = {
   props: {
     form: {
@@ -295,16 +296,16 @@ const _sfc_main$6 = {
 };
 var _sfc_render$6 = function render4() {
   var _vm = this, _c = _vm._self._c;
-  return _c("div", [_c("sh-form", { ref: "form", attrs: { "model": _vm.form, "label-width": "120px", "class-name": "xy-form" } }, [_c("sh-form-item", { attrs: { "label": "\u6240\u5C5E\u5E94\u7528", "prop": "appId", "rules": "required" } }, [_c("el-select", { attrs: { "placeholder": "\u8BF7\u9009\u62E9" }, model: { value: _vm.form.appId, callback: function($$v) {
+  return _c("div", [_c("sh-form", { ref: "form", attrs: { "model": _vm.form, "label-width": "120px", "class-name": "xy-form" } }, [_c("sh-form-item", { attrs: { "label": "\u6240\u5C5E\u5E94\u7528", "prop": "appId", "rules": "required", "span": 16 } }, [_c("el-select", { attrs: { "placeholder": "\u8BF7\u9009\u62E9" }, model: { value: _vm.form.appId, callback: function($$v) {
     _vm.$set(_vm.form, "appId", $$v);
   }, expression: "form.appId" } }, _vm._l(_vm.getData, function(item) {
     return _c("el-option", { key: item.id, attrs: { "label": item.appName, "value": item.appId } });
-  }), 1)], 1), _c("sh-form-item", { attrs: { "label": "\u95E8\u6237\u540D\u79F0", "prop": "facadeName", "rules": "required" } }, [_c("el-input", { attrs: { "placeholder": "\u8BF7\u8F93\u5165\u95E8\u6237\u540D\u79F0" }, model: { value: _vm.form.facadeName, callback: function($$v) {
+  }), 1)], 1), _c("sh-form-item", { attrs: { "label": "\u95E8\u6237\u540D\u79F0", "prop": "facadeName", "rules": "required", "span": 16 } }, [_c("el-input", { attrs: { "placeholder": "\u8BF7\u8F93\u5165\u95E8\u6237\u540D\u79F0" }, model: { value: _vm.form.facadeName, callback: function($$v) {
     _vm.$set(_vm.form, "facadeName", $$v);
   }, expression: "form.facadeName" } })], 1), _c("sh-form-item", { attrs: { "label": "\u95E8\u6237\u7F16\u7801", "prop": "facadeCode", "rules": [
     "required",
     { pattern: /^[a-zA-Z][a-zA-Z-]*[a-zA-Z]$/, message: "\u4EE5\u5B57\u6BCD\u5F00\u5934\u7ED3\u5C3E\u4E14\u53EA\u5305\u542B\u5B57\u6BCD\u6216\u8005\u4E2D\u5212\u7EBF", trigger: "blur" }
-  ] } }, [_c("el-input", { attrs: { "placeholder": "\u8BF7\u8F93\u5165\u95E8\u6237\u7F16\u7801" }, model: { value: _vm.form.facadeCode, callback: function($$v) {
+  ], "span": 16 } }, [_c("el-input", { attrs: { "placeholder": "\u8BF7\u8F93\u5165\u95E8\u6237\u7F16\u7801" }, model: { value: _vm.form.facadeCode, callback: function($$v) {
     _vm.$set(_vm.form, "facadeCode", $$v);
   }, expression: "form.facadeCode" } })], 1), _c("sh-form-item", { attrs: { "label": "\u6392\u5E8F", "prop": "sort", "rules": "required" } }, [_c("el-input-number", { attrs: { "controls-position": "right", "min": 0 }, model: { value: _vm.form.sort, callback: function($$v) {
     _vm.$set(_vm.form, "sort", $$v);
@@ -321,12 +322,12 @@ var __component__$6 = /* @__PURE__ */ normalizeComponent(
   _sfc_staticRenderFns$6,
   false,
   null,
-  "f59e4e49",
+  "2b64e19c",
   null,
   null
 );
 var CreateUpdate = __component__$6.exports;
-var Index_vue_vue_type_style_index_0_scoped_4c3a05e1_lang = "";
+var Index_vue_vue_type_style_index_0_scoped_5f5aecf0_lang = "";
 let mouseXY = { x: null, y: null };
 let DragPos = { x: null, y: null, w: 1, h: 1, i: null };
 const _sfc_main$5 = {
@@ -528,7 +529,7 @@ var __component__$5 = /* @__PURE__ */ normalizeComponent(
   _sfc_staticRenderFns$5,
   false,
   null,
-  "4c3a05e1",
+  "5f5aecf0",
   null,
   null
 );
@@ -660,7 +661,7 @@ var __component__$2 = /* @__PURE__ */ normalizeComponent(
   null
 );
 var LayoutContent = __component__$2.exports;
-var Index_vue_vue_type_style_index_0_scoped_8751ea96_lang = "";
+var Index_vue_vue_type_style_index_0_scoped_3d680daa_lang = "";
 const _sfc_main$1 = {
   __name: "Index",
   props: {
@@ -677,24 +678,25 @@ const _sfc_main$1 = {
     const isNoData = ref(false);
     const loading = ref(false);
     const { proxy } = getCurrentInstance();
-    const id = proxy.$route.params.id;
-    const portalCode = [`first`, `second`, `third`, `fourth`, `fifth`, `seventh`, `eighth`, `ninth`, `tenth`];
-    const getPortal = async (id2) => {
-      const res = await $post(bbxAdminFacade.getFaceByCode, { facadeCode: id2 });
+    console.log(123, proxy.$route);
+    const { path } = proxy.$route;
+    const prefix = path.slice(1).replaceAll("/", "-");
+    const portalCode = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
+    const getPortal = async (id) => {
+      const res = await $post(bbxAdminFacade.getFaceByCode, { facadeCode: id });
       layout.value = res.data.jsonObject;
-      console.log(res.data.jsonObject);
     };
     const key = portalCode.find((item) => {
-      return $isCode(`bbx-index-${id}-${item}`);
+      return $isCode(`${prefix}-${item}`);
     });
     onMounted(() => {
       if (key) {
-        getPortal(`bbx-index-${id}-${key}`);
+        getPortal(`${prefix}-${key}`);
       } else {
-        getPortal(`bbx-index-${id}`);
+        getPortal(prefix);
       }
     });
-    return { __sfc: true, props, layout, isNoData, loading, proxy, id, portalCode, getPortal, key, NoData, Loading, LayoutContent };
+    return { __sfc: true, props, layout, isNoData, loading, proxy, path, prefix, portalCode, getPortal, key, NoData, Loading, LayoutContent };
   }
 };
 var _sfc_render$1 = function render9() {
@@ -708,7 +710,7 @@ var __component__$1 = /* @__PURE__ */ normalizeComponent(
   _sfc_staticRenderFns$1,
   false,
   null,
-  "8751ea96",
+  "3d680daa",
   null,
   null
 );
