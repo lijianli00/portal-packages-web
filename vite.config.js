@@ -4,7 +4,7 @@ import { getSrcPath, createVitePlugins, wrapperEnv, createProxy } from './build'
 
 export default defineConfig(({ command, mode }) => {
   const rootPath = getSrcPath()
-  const srcPath = getSrcPath('src')
+  const srcPath = getSrcPath('examples')
   const env = loadEnv(mode, process.cwd())
   const viteEnv = wrapperEnv(env)
   const {

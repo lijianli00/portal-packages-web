@@ -16,7 +16,7 @@
     "@unocss/preset-icons": "^0.44.1",
     "@unocss/preset-uno": "^0.44.1",
     "@unocss/transformer-directives": "^0.53.5",
-    "blackbox-ui": "1.0.55-beta",
+    "blackbox-ui": "1.0.56-beta",
     "crypto-js": "^4.1.1",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
@@ -30,6 +30,7 @@
     "vite": "^2.9.9",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-require-transform": "^1.0.20",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue2": "^2.0.3"
   },
   "dependencies": {
@@ -45,6 +46,7 @@
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "pdfjs-dist": "2.5.207",
+    "portal-packages": "workspace:^1.0.1",
     "sortablejs": "^1.15.0",
     "unplugin-vue-components": "^0.21.1",
     "vue": "2.7.14",
