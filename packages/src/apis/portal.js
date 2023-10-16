@@ -1,12 +1,12 @@
 export const bbxAdminFacade = {
   // 新增门户
-  add: '/bbxAdminFacade/addFacadeAssembly',
+  add: '/bbxLowCodeFacade/addFacadeAssembly',
   // 根据门户编码查询门户
-  getFaceByCode: '/bbxAdminFacade/getFaceByCode',
+  getFaceByCode: '/bbxLowCodeFacade/getFaceByCode',
   // 更新门户
-  update: '/bbxAdminFacade/updateFace',
-  list: '/bbxAdminFacade/listFacePage',
-  delete: '/bbxAdminFacade/deleteFaceById'
+  update: '/bbxLowCodeFacade/updateFace',
+  list: '/bbxLowCodeFacade/listFacePage',
+  delete: '/bbxLowCodeFacade/deleteFaceById'
 }
 
 //获取应用列表
