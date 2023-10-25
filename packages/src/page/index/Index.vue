@@ -51,7 +51,6 @@ const getPortal = async id => {
 
 const init = () => {
   const key = portalCode.find(item => {
-    console.log(`${prefix.value}-${item}`, $isCode(`${prefix.value}-${item}`))
     return $isCode(`${prefix.value}-${item}`)
   })
   if (key) {
