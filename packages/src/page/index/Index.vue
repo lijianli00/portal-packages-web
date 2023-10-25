@@ -40,8 +40,8 @@ const getPortal = async id => {
   loading.value = true
   const { code, msg, data } = await $post(bbxAdminFacade.getFaceByCode, { facadeCode: id })
   loading.value = false
-  if (code === 0 && data && data.jsonObject) {
-    layout.value = data.jsonObject
+  if (code === 0 && data && data.content) {
+    layout.value = JSON.parse(data.content)
     isNoData.value = false
   } else {
     isNoData.value = true

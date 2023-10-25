@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 pnpm-lock.yaml
+packages/es
+packages/stats.html
 
 # Editor directories and files
 .vscode/*

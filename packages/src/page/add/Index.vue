@@ -154,7 +154,7 @@ export default {
         },
         data => {
           this.form = { ...data.data }
-          this.layout = data.data.jsonObject || []
+          this.layout = JSON.parse(data.data.content || '[]')
         }
       )
     },
@@ -163,7 +163,10 @@ export default {
       this.form.jsonObject = this.layout
       this.$post(
         this.form.id ? bbxAdminFacade.update : bbxAdminFacade.add,
-        this.form,
+        {
+          ...this.form,
+          content: JSON.stringify(this.form.jsonObject)
+        },
         data => {
           this.$notify.success(data.msg)
           this.$router.push('/bbx/portal')
