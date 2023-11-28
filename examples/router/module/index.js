@@ -26,6 +26,11 @@ export default [
     component: () => import('../../views/login/index.vue')
   },
   {
+    path: '/login2',
+    meta: { title: '配置登录', notLogin: true },
+    component: () => import('../../views/configLogin/index.vue')
+  },
+  {
     path: '/ztLogin',
     meta: { title: '重定向', notLogin: true },
     component: () => import('../../views/ztLogin/index.vue')
