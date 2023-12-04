@@ -1,5 +1,5 @@
 <template>
-  <sh-app>
+  <sh-app :app-id="appId">
     <div
       id="app"
       v-loading.fullscreen.lock="fullscreenLoading"
@@ -17,6 +17,12 @@ export default {
   computed: {
     fullscreenLoading() {
       return this.$store.state.configStore.fullscreenLoading
+    }
+  },
+  data() {
+    return {
+      // 应用id 唯一标识   由应用管理列表  对应应用
+      appId: 'demodemo'
     }
   },
   mounted() {
