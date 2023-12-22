@@ -7,7 +7,6 @@
     "build": "vite build --mode dev",
     "build-test": "vite build --mode test",
     "build-prod": "vite build --mode prod",
-    "build-newProd": "vite build --mode newProd",
     "preview": "vite preview"
   },
   "devDependencies": {
